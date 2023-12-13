@@ -14,6 +14,7 @@ const accessLogStream = rfs.createStream('access.log', {
 const development = {
     name: 'development',
     db: 'codeial_development',
+    MONGO_CONNECTION_STRING: `mongodb+srv://abhishekprajapat423:czLJg7Vu81pypDeA@codeial.ol7pbzh.mongodb.net/?retryWrites=true&w=majority` ,
     //session_cookie_key: 'aesx6IdNXY3HTeGlO6Grb6FEniQtkZyi',
     smtp: {
         service: 'gmail',
@@ -44,6 +45,6 @@ const production = {
     }
 }
 
-module.exports = development;
-// module.exports = eval(process.env.CODEIAL_ENVIRONMENT) == undefined ? development : eval(process.env.CODEIAL_ENVIRONMENT);
+module.export = development;
+// module.export = eval(process.env.CODEIAL_ENVIRONMENT) == undefined ? development : eval(process.env.CODEIAL_ENVIRONMENT);
 
