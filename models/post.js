@@ -8,7 +8,20 @@ const postSchema = new mongoose.Schema({
     user: {
         type:mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }
+    },
+    //include the array of ids of al comments in this post schemma itself
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Comment'
+        }
+    ],
+    likes:[
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Like'
+        }
+    ]
 },{
     timestamp : true
 });
