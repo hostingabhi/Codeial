@@ -27,7 +27,7 @@ const development = {
     },
     google_client_id: "26421268233-om1sfbnmuhopveg5vuguonvr5u4omq1v.apps.googleusercontent.com",
     google_client_secret: "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",
-    google_call_back_url: "https://chat-application-c61e.onrender.com/users/auth/google/callback",
+    google_call_back_url: "https://chat-application-c61e.onrender.com/auth/google/callback",
     session_cookie_key: 'XP9ag56FimMecugjIkzaCFFlLphVCrhk',
     morgan: {
         mode: 'dev',
