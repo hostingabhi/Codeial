@@ -14,7 +14,7 @@ const accessLogStream = rfs.createStream('access.log', {
 const development = {
     name: 'development',
     db: 'codeial_development',
-    MONGO_CONNECTION_STRING: `mongodb+srv://abhishekprajapat423:czLJg7Vu81pypDeA@codeial.ol7pbzh.mongodb.net/?retryWrites=true&w=majority` ,
+    MONGO_CONNECTION_STRING: "mongodb+srv://abhishekprajapat423:czLJg7Vu81pypDeA@codeial.ol7pbzh.mongodb.net/codeial_development" ,
     //session_cookie_key: 'aesx6IdNXY3HTeGlO6Grb6FEniQtkZyi',
     smtp: {
         service: 'gmail',

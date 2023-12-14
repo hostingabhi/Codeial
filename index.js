@@ -67,7 +67,7 @@ app.use(session({
     },
     store: MongoStore.create(
         {
-            mongoUrl : process.env.MONGO_CONNECTION_STRING || "mongodb+srv://abhishekprajapat423:czLJg7Vu81pypDeA@codeial.ol7pbzh.mongodb.net/?retryWrites=true&w=majority" ,
+            mongoUrl : process.env.MONGO_CONNECTION_STRING || "mongodb+srv://abhishekprajapat423:czLJg7Vu81pypDeA@codeial.ol7pbzh.mongodb.net/codeial_development" ,
             autoRemove: 'disabled'
         },
         function(err){
