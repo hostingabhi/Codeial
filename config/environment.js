@@ -15,7 +15,6 @@ const development = {
     name: 'development',
     db: 'codeial_development',
     MONGO_CONNECTION_STRING: "mongodb+srv://abhishekprajapat423:czLJg7Vu81pypDeA@codeial.ol7pbzh.mongodb.net/codeial_development" ,
-    //session_cookie_key: 'aesx6IdNXY3HTeGlO6Grb6FEniQtkZyi',
     smtp: {
         service: 'gmail',
         host: 'smtp.gmail.com',
@@ -28,7 +27,7 @@ const development = {
     },
     google_client_id: "26421268233-om1sfbnmuhopveg5vuguonvr5u4omq1v.apps.googleusercontent.com",
     google_client_secret: "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",
-    google_call_back_url: "http://localhost:8000/users/auth/google/callback",
+    google_call_back_url: "https://chat-application-c61e.onrender.com/users/auth/google/callback",
     session_cookie_key: 'XP9ag56FimMecugjIkzaCFFlLphVCrhk',
     morgan: {
         mode: 'dev',

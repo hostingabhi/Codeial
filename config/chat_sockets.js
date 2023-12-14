@@ -1,38 +1,51 @@
-module.exports.chatSockets = function(socketServer){
+module.exports.chatSockets = function (socketServer) {
+  let io = require('socket.io')(socketServer, {
+      cors: {
+          origin: "https://chat-application-c61e.onrender.com",
+          methods: ["GET", "POST"],
+          allowedHeaders: ['my-custom-header'],
+          credentials: true
+      }
+  });
 
-    let io= require('socket.io')(socketServer , {
-          cors: {
-            origin: "http://localhost:8000",
-            methods: ["GET", "POST"],
-            allowedHeaders:['my-custom-header'],
-            credentials: true
+  // Initialize an object to store room details
+  let userSocketMap = {};
+
+  io.sockets.on('connection', (socket) => {
+      console.log("New connection received!", socket.id);
+
+      socket.on('disconnect', function () {
+          // Remove user from the room when disconnected
+          if (userSocketMap[socket.id]) {
+              const { chat_room, user } = userSocketMap[socket.id];
+              socket.to(chat_room).broadcast.emit('user_left', { user });
+              delete userSocketMap[socket.id];
           }
-        });
-      //js is a event absed llanguage so our sockets work on events
-      io.sockets.on('connection' , (socket)=>{
-          console.log("new connection recieved !" , socket.id);
-  
-          socket.on('disconnect' , function(){
-              console.log("Socket Disconnected !" );
-          })
-          //2)we detected the emited join_room event
-          socket.on('join_room' , function(data){
-  
-            console.log( 'joining the requested room',data);
-            //we join the chatroom if it exists else its created 
-            socket.join(data.chat_room);
-            
-            //3)we must send a confirmation back to the front end broeserr taht our user has been added ,
-            //for that we emit an event confiming that user has joined
-            //we must emit this message only to the user  of that speceific room
-            io.in(data.chat_room ).emit('user_joined' , data);
-            //this confirmation is recved at the front end 
-          })
-          //the send message eevent is detected and it send back the message in that schat room
-          socket.on('send_message' , function(data){
-  
-            io.in(data.chat_room).emit('receive_message' , data);
-          })
-      })
-  
-  }
+
+          console.log("Socket Disconnected!");
+      });
+
+      // Handle join_room event
+      socket.on('join_room', function (data) {
+          console.log('Joining the requested room', data);
+
+          // Join the chatroom if it exists else it's created
+          socket.join(data.chat_room);
+
+          // Store user details
+          userSocketMap[socket.id] = {
+              chat_room: data.chat_room,
+              user: data.user
+          };
+
+          // Emit a confirmation to the user that they have joined
+          io.in(data.chat_room).emit('user_joined', data);
+      });
+
+      // Handle send_message event
+      socket.on('send_message', function (data) {
+          // Emit the received message to all users in the chat room
+          io.in(data.chat_room).emit('receive_message', data);
+      });
+  });
+};
