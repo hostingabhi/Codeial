@@ -5,7 +5,7 @@ const User = require('../models/user');
 const env = require('./environment');
 
 passport.use(new GoogleStrategy({
-    clientID: env.google_client_id,
+    clientID: env.google_client_id || '26421268233-om1sfbnmuhopveg5vuguonvr5u4omq1v.apps.googleusercontent.com',
     clientSecret: env.google_client_secret,
     callbackURL: env.google_call_back_url
 },
