@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const env = require('./environment');
 
-const mongoConnectionString = process.env.MONGO_CONNECTION_STRING || `mongodb+srv://abhishekprajapat423:czLJg7Vu81pypDeA@codeial.ol7pbzh.mongodb.net/?retryWrites=true&w=majority`;
+const mongoConnectionString = process.env.MONGO_CONNECTION_STRING || `mongodb+srv://abhishekprajapat423:czLJg7Vu81pypDeA@codeial.ol7pbzh.mongodb.net/codeial_development`;
 
 mongoose.connect(mongoConnectionString, {
   useNewUrlParser: true,
