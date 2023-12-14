@@ -41,7 +41,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public/assets' )));
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
-app.use(logger(env.morgan.mode, env.morgan.options));
+app.use(logger(dev, { stream: accessLogStream }));
 
 app.use(expressLayouts);
 //extract style and scripts from sub pages into the layout
